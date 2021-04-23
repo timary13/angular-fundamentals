@@ -1,3 +1,3 @@
 ## Learn Angular Fundamentals
 
-Course: epam course
+Epam course
