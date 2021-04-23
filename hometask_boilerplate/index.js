@@ -33,9 +33,13 @@ const errorRequestEmulation$ = new Observable(observer => {
 });
 
 userActionEmulation$.pipe(
-// YOUR CODE STARTS HERE
-
-// YOUR CODE ENDS HERE
+    pluck('value'),
+    map(value => `Value - ${value};`),
+    switchMap(() => forkJoin(
+        sucessRequestEmulation$.pipe(pluck('value')),
+        errorRequestEmulation$.pipe(catchError(error => of(error)), pluck('error'))
+    ), (letter, [success, error]) => `${letter} Response - ${success}; Error - ${error}`),
+    distinctUntilChanged()
 ).subscribe(
   (result) => console.log(result),
   (err) => { throw err },
