@@ -1,0 +1,23 @@
+.course-list {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  margin: auto;
+}
+
+.card-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 10px;
+
+  &-show {
+    width: 50%;
+  }
+
+  &-action {
+    width: 40%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+}

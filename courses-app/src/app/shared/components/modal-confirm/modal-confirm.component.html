@@ -1,0 +1,24 @@
+<div class="modal-outer">
+  <div class="modal-inner">
+    <div class="header">
+      <h3>{{ title }}</h3>
+      <app-button
+        [iconName]="closeIcon"
+        (click)="onClose()"
+      ></app-button>
+    </div>
+    <div class="body">
+      <p>{{ message }}</p>
+      <div class="buttons">
+        <app-button
+          [text]="okButtonText"
+          (click)="confirm(true)"
+        ></app-button>
+        <app-button
+          [text]="cancelButtonText"
+          (click)="confirm(false)"
+        ></app-button>
+      </div>
+    </div>
+  </div>
+</div>

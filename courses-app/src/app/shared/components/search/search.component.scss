@@ -1,0 +1,8 @@
+.search {
+  border: 1px solid #0a4f1f;
+  border-radius: 15px;
+
+  &:hover, &:active {
+    border-color: #1eed5d;
+  }
+}

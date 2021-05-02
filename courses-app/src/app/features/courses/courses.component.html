@@ -1,0 +1,40 @@
+<div class="container">
+  <app-header>
+    <app-search></app-search>
+    <div class="user">
+      <span class="user-name">{{ userName }}</span>
+      <app-button
+        [text]="'Logout'"
+      ></app-button>
+    </div>
+  </app-header>
+
+  <app-button
+    [text]="'Open modal'"
+    (click)="openModal()"
+  ></app-button>
+  <app-modal-confirm
+    *ngIf="isOpenModal"
+    [title]="'Modal window'"
+    [message]="'It is a test confirmation window!'"
+    [okButtonText]="'OK'"
+    [cancelButtonText]="'Cancel'"
+    (close)="closeModal()"
+    (confirmResult)="confirmModal($event)"
+  ></app-modal-confirm>
+
+  <app-course-list
+    *ngIf="courses.length"
+    [courses]="courses"
+    [isEditable]="true"
+  ></app-course-list>
+  <app-info
+    *ngIf="!courses.length"
+    [title]="emptyListInfoTitle"
+    [text]="emptyListInfoText"
+  >
+    <app-button
+      [text]="'Add new course'"
+    ></app-button>
+  </app-info>
+</div>
