@@ -1,2 +1,4 @@
-export * from '../directives/email.pipe';
-export * from './password.pipe';
+export * from './email.directive';
+export * from './password.directive';
+export * from './toggle-password.directive';
+export * from './bold.directive';

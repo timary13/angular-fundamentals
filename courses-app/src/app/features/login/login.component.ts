@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, NgModel} from "@angular/forms";
+import { IconName } from '@fortawesome/free-solid-svg-icons';
 import { titleCase } from "../helpers";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['../registration/registration.component.scss']
+  styleUrls: ['./login.component.scss','../registration/registration.component.scss']
 })
 export class LoginComponent implements OnInit {
+  public visiblePasswordIcon: IconName = 'eye';
+  public unvisiblePasswordIcon: IconName = 'eye-slash';
 
   constructor() {
   }

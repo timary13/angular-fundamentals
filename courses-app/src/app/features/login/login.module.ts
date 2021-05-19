@@ -12,7 +12,7 @@ import {SharedModule} from "../../shared/shared.module";
   ],
   imports: [
     SharedModule,
-    FormsModule
+    FormsModule,
   ]
 })
 export class LoginModule { }

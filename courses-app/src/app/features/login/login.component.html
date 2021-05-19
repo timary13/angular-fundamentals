@@ -5,8 +5,8 @@
       <div class="form">
         <div class="form-field">
           <div class="form-field-input">
-            <label>Login</label>
-            <input class="input" name="login" ngModel #login="ngModel" email />
+            <label bold>Login</label>
+            <input class="input" name="login" type="text" ngModel #login="ngModel" email />
           </div>
           <app-input-validator
             [checkIsInvalid]="checkInvalid(login)"
@@ -15,8 +15,11 @@
         </div>
         <div class="form-field">
           <div class="form-field-input">
-            <label>Password</label>
-            <input class="input" name="password" ngModel #password="ngModel" password/>
+            <label bold>Password</label>
+            <span class="password-container">
+              <fa-icon [icon]="toggleOption.isHidden ? visiblePasswordIcon : unvisiblePasswordIcon"></fa-icon>
+              <input class="input password" name="password" type="text" ngModel #password="ngModel" password togglePassword #toggleOption="togglePassword" />
+            </span>
           </div>
           <app-input-validator
             [checkIsInvalid]="checkInvalid(password)"

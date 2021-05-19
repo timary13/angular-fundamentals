@@ -12,6 +12,7 @@ import {
 } from './components';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CreationDateTransformPipe, DurationTransformPipe, StringJoinerTransformPipe} from "./pipes";
+import { BoldDirective, TogglePasswordDirective } from './directives';
 
 const COMPONENTS = [
   HeaderComponent,
@@ -28,15 +29,20 @@ const PIPES = [
   StringJoinerTransformPipe
 ];
 
+const DIRECTIVES = [
+  TogglePasswordDirective,
+  BoldDirective,
+];
+
 @NgModule({
-  declarations: [...COMPONENTS, ...PIPES],
+  declarations: [...COMPONENTS, ...PIPES, ...DIRECTIVES],
   imports: [
     CommonModule,
     FontAwesomeModule,
     ReactiveFormsModule,
     FormsModule
   ],
-  exports: [...COMPONENTS, CommonModule, ...PIPES],
+  exports: [...COMPONENTS, CommonModule, ...PIPES, ...DIRECTIVES, FontAwesomeModule],
 })
 export class SharedModule {
   constructor(library: FaIconLibrary) {
