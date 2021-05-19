@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
-import { RegistrationComponent } from './registration.component';
 import {SharedModule} from "../../shared/shared.module";
 import {ReactiveFormsModule} from "@angular/forms";
+import {CourseFormComponent} from "./course-form.component";
 
 @NgModule({
   declarations: [
-    RegistrationComponent
+    CourseFormComponent
   ],
   exports: [
-    RegistrationComponent
+    CourseFormComponent
   ],
   imports: [
     SharedModule,
     ReactiveFormsModule
   ]
 })
-export class RegistrationModule { }
+export class CourseFormModule { }
