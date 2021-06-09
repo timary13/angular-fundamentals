@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { IconName } from '@fortawesome/free-solid-svg-icons';
-import {ICourse} from "../../../../dto";
+import {ICourse} from "../../../dto";
 
 @Component({
   selector: 'app-course-list',
@@ -8,8 +8,8 @@ import {ICourse} from "../../../../dto";
   styleUrls: ['./course-list.component.scss']
 })
 export class CourseListComponent implements OnInit {
-  @Input() courses!: ICourse[];
-  @Input() isEditable!: boolean;
+  @Input() courses: ICourse[] = [];
+  @Input() isEditable: boolean = false;
 
   public trashIcon: IconName = 'trash';
   public editIcon: IconName = 'pen';

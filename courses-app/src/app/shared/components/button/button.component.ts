@@ -9,6 +9,7 @@ import { IconName } from "@fortawesome/fontawesome-svg-core";
 export class ButtonComponent implements OnInit {
   @Input() text: string | undefined;
   @Input() iconName: IconName | undefined;
+  @Input() isDisabled: boolean | undefined;
 
   constructor() {}
 

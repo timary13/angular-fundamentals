@@ -1,0 +1,76 @@
+form {
+  width: 100%;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.info {
+  display: grid;
+  grid-template-areas:
+    "title create-button"
+    "description description"
+    "additional additional";
+  grid-template-columns: 80% 20%;
+  grid-template-rows: 1fr 4fr 4fr;
+  grid-row-gap: 5vh;
+
+  .create-course-button {
+    grid-area: create-button;
+    justify-self: end;
+    align-self: center;
+  }
+
+  .title {
+    grid-area: title;
+  }
+
+  .description {
+    grid-area: description;
+
+    & textarea {
+      height: -webkit-fill-available;
+    }
+  }
+
+  .additional-info {
+    border: 1px solid black;
+    padding: 15px;
+    grid-area: additional;
+    display: grid;
+    grid-template-areas:
+      "add-author authors-list"
+      "duration authors-list";
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 1fr 1fr;
+
+    .form-field > h3 {
+      align-self: center;
+    }
+
+    .add-author {
+      grid-area: add-author;
+      display: flex;
+      flex-direction: column;
+
+      &-button {
+        align-self: center;
+      }
+    }
+
+    .duration {
+      grid-area: duration;
+
+      & > p {
+        padding-top: 15px;
+      }
+    }
+
+    .authors-list {
+      grid-area: authors-list;
+    }
+  }
+}
+

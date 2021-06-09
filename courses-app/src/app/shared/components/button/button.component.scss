@@ -1,10 +1,14 @@
-.button {
+:host {
   border: 1px solid #1eed5d;
   padding: 5px 10px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &:disabled {
+    border-color: #606361;
+  }
 
   &:hover {
     border-color: #0a4f1f;

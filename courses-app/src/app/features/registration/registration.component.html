@@ -1,1 +1,45 @@
-<p>registration works!</p>
+<div class="container">
+  <app-header></app-header>
+  <div class="form-container">
+    <form [formGroup]="registrationForm" novalidate (ngSubmit)="submit()">
+      <div class="form">
+        <div class="form-field">
+          <div class="form-field-input">
+            <label>Name</label>
+            <input class="input" formControlName="name"/>
+          </div>
+          <app-input-validator
+            [checkIsInvalid]="checkInvalid('name')"
+            [getErrorMessage]="getErrorMessage('name')"
+          ></app-input-validator>
+        </div>
+        <div class="form-field">
+          <div class="form-field-input">
+            <label>Email</label>
+            <input class="input" formControlName="email" />
+          </div>
+          <app-input-validator
+            [checkIsInvalid]="checkInvalid('email')"
+            [getErrorMessage]="getErrorMessage('email')"
+          ></app-input-validator>
+        </div>
+        <div class="form-field">
+          <div class="form-field-input">
+            <label>Password</label>
+            <input class="input" formControlName="password"/>
+          </div>
+          <app-input-validator
+            [checkIsInvalid]="checkInvalid('password')"
+            [getErrorMessage]="getErrorMessage('password')"
+          ></app-input-validator>
+        </div>
+        <app-button
+          [text]="'Registration'"
+        ></app-button>
+      </div>
+    </form>
+    <div class="registration">
+      <p>If you have an account you can <a href="">Login</a></p>
+    </div>
+  </div>
+</div>

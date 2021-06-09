@@ -1,0 +1,22 @@
+<div class="course-card">
+  <div class="course-card-definition">
+    <h3>{{ course.title }}</h3>
+    <p>{{ ellipsisDescription }}</p>
+  </div>
+  <div class="course-card-info">
+    <div class="info-item">
+      <span class="name">{{ authorsLabelText }}:</span>
+      <span class="value"> {{ course.authors | stringjoiner:', ' }}</span>
+    </div>
+    <div class="info-item">
+      <span class="name">{{ durationLabelText }}:</span>
+      <span class="value"> {{ course.duration | duration }}</span>
+    </div>
+    <div class="info-item">
+      <span class="name">{{ createdLabelText }}:</span>
+      <span class="value"> {{ course.creationDate | creationdate }}</span>
+    </div>
+
+    <ng-content></ng-content>
+  </div>
+</div>

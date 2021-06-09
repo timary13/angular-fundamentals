@@ -1,6 +1,5 @@
 <div class="container">
   <app-header>
-    <app-search></app-search>
     <div class="user">
       <span class="user-name">{{ userName }}</span>
       <app-button
@@ -8,7 +7,10 @@
       ></app-button>
     </div>
   </app-header>
-
+  <app-search
+    [placeholderString]="'Search'"
+    (search)="onSearch($event)"
+  ></app-search>
   <app-button
     [text]="'Open modal'"
     (click)="openModal()"

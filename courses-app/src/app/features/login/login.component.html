@@ -1,1 +1,38 @@
-<p>login works!</p>
+<div class="container">
+  <app-header></app-header>
+  <div class="form-container">
+    <form #loginForm="ngForm" novalidate (ngSubmit)="submit(loginForm)">
+      <div class="form">
+        <div class="form-field">
+          <div class="form-field-input">
+            <label bold>Login</label>
+            <input class="input" name="login" type="text" ngModel #login="ngModel" email />
+          </div>
+          <app-input-validator
+            [checkIsInvalid]="checkInvalid(login)"
+            [getErrorMessage]="getErrorMessage(login)"
+          ></app-input-validator>
+        </div>
+        <div class="form-field">
+          <div class="form-field-input">
+            <label bold>Password</label>
+            <span class="password-container">
+              <fa-icon [icon]="toggleOption.isHidden ? visiblePasswordIcon : unvisiblePasswordIcon"></fa-icon>
+              <input class="input password" name="password" type="text" ngModel #password="ngModel" password togglePassword #toggleOption="togglePassword" />
+            </span>
+          </div>
+          <app-input-validator
+            [checkIsInvalid]="checkInvalid(password)"
+            [getErrorMessage]="getErrorMessage(password)"
+          ></app-input-validator>
+        </div>
+        <app-button
+          [text]="'Login'"
+        ></app-button>
+      </div>
+    </form>
+    <div class="registration">
+      <p>If you don't have an account you can <a href="">Registration</a></p>
+    </div>
+  </div>
+</div>

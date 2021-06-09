@@ -1,0 +1,61 @@
+<form [formGroup]="courseForm" novalidate (ngSubmit)="submit()">
+  <div class="form">
+    <div class="info">
+      <div class="form-field title">
+        <label>Title</label>
+        <input class="input" formControlName="title"/>
+        <app-input-validator
+          [checkIsInvalid]="isEmptyInput('title')"
+          [getErrorMessage]="getErrorMessage('title')"
+        ></app-input-validator>
+      </div>
+      <div class="form-field description">
+        <label>Description</label>
+        <textarea class="input" formControlName="description"></textarea>
+        <app-input-validator
+          [checkIsInvalid]="isEmptyInput('description')"
+          [getErrorMessage]="getErrorMessage('description')"
+        ></app-input-validator>
+      </div>
+      <app-button
+        class="create-course-button"
+        [text]="'Create course'"
+      ></app-button>
+
+      <div class="additional-info">
+        <div class="add-author">
+          <div class="form-field">
+            <h3>Add authors</h3>
+            <label>Author name</label>
+            <input class="input" formControlName="author" />
+          </div>
+          <app-button
+            class="add-author-button"
+            [text]="'Create author'"
+          ></app-button>
+        </div>
+        <div class="duration">
+          <div class="form-field">
+            <h3>Duration</h3>
+            <label>Duration</label>
+            <input class="input" formControlName="duration" />
+            <app-input-validator
+              [checkIsInvalid]="isEmptyInput('duration')"
+              [getErrorMessage]="getErrorMessage('duration')"
+            ></app-input-validator>
+          </div>
+          <p>Duration hours</p>
+        </div>
+        <div class="authors-list">
+          <div class="form-field">
+            <span></span>
+            <app-button
+              class="delete-author-button"
+              [text]="'Delete author'"
+            ></app-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

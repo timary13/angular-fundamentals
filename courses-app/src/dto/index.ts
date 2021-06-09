@@ -1,1 +1,1 @@
-export { ICourse } from './ICourse';
+export { ICourse, Course } from './ICourse';

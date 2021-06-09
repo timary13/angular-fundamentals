@@ -5,32 +5,44 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import {
   HeaderComponent,
   ButtonComponent,
-  CourseCardComponent,
-  CourseCardInfoItemComponent,
-  CourseListComponent,
   InfoComponent,
   SearchComponent,
-  ModalConfirmComponent
+  ModalConfirmComponent,
+  InputValidatorComponent,
 } from './components';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {CreationDateTransformPipe, DurationTransformPipe, StringJoinerTransformPipe} from "./pipes";
+import { BoldDirective, TogglePasswordDirective } from './directives';
 
 const COMPONENTS = [
   HeaderComponent,
   ButtonComponent,
-  CourseCardComponent,
-  CourseCardInfoItemComponent,
-  CourseListComponent,
   InfoComponent,
   SearchComponent,
-  ModalConfirmComponent
+  ModalConfirmComponent,
+  InputValidatorComponent
+];
+
+const PIPES = [
+  DurationTransformPipe,
+  CreationDateTransformPipe,
+  StringJoinerTransformPipe
+];
+
+const DIRECTIVES = [
+  TogglePasswordDirective,
+  BoldDirective,
 ];
 
 @NgModule({
-  declarations: COMPONENTS,
+  declarations: [...COMPONENTS, ...PIPES, ...DIRECTIVES],
   imports: [
     CommonModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
-  exports: [...COMPONENTS, CommonModule],
+  exports: [...COMPONENTS, CommonModule, ...PIPES, ...DIRECTIVES, FontAwesomeModule],
 })
 export class SharedModule {
   constructor(library: FaIconLibrary) {
