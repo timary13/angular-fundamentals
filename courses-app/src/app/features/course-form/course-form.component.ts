@@ -1,32 +1,60 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Course} from "../../../dto";
+import { Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+import {Course, ICourse} from "../../../dto";
 import {titleCase} from "../helpers";
+
+const DEBOUNCE_DUE_TIME = 400;
 
 @Component({
   selector: 'app-course-form',
   templateUrl: './course-form.component.html',
-  styleUrls: ['./course-form.component.scss']
+  styleUrls: ['./course-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseFormComponent implements OnInit {
+  @Input() public course: ICourse | null;
+  @Output() addAuthor = new EventEmitter<string>();
+  
   public courseForm: FormGroup;
+  public currentCourse: Course;
+
+  private formChangesSubscription: Subscription;
 
   constructor(private formBuilder: FormBuilder) {
-    //const inputCourse = new Course(this.course);
-    this.courseForm = formBuilder.group({
-      "title": ['', [Validators.required]],
-      "description": ['', [ Validators.required]],
-      "author": ['', [ Validators.required]],
-      "duration": ['', [ Validators.required]],
-    });
+    this.currentCourse = new Course(this.course);
   }
 
   ngOnInit(): void {
+    this.courseForm = this.formBuilder.group({
+      "title": [this.currentCourse.title, [Validators.required]],
+      "description": [this.currentCourse.description, [ Validators.required]],
+      "author": ['', [ Validators.required]],
+      "duration": [this.currentCourse.duration, [ Validators.required]],
+    });
+
+    this.formChangesSubscription = this.courseForm.valueChanges
+      .pipe(debounceTime(DEBOUNCE_DUE_TIME))
+      .subscribe(changes => {
+        const newCourse: ICourse = {
+          title: changes.title,
+          description: changes.description,
+          creationDate: changes.creationDate,
+          duration: changes.duration,
+          authors: changes.authors,
+        };
+        //this.formUpdate.emit(newCourse);
+      });
   }
 
   public submit() {
     this.courseForm.markAllAsTouched();
     this.courseForm.updateValueAndValidity();
+  }
+
+  public addAuthorHandler(name: string) {
+    this.addAuthor.emit(name);
   }
 
   public isEmptyInput(controlName: string): () => boolean {

@@ -1,13 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {CoursesModule} from "./features/courses/courses.module";
+import { CoursesModule } from "./features/courses/courses.module";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {LoginModule} from "./features/login/login.module";
-import {CourseModule} from "./features/course/course.module";
-import {RegistrationModule} from "./features/registration/registration.module";
+import { LoginModule } from "./features/login/login.module";
+import { CourseModule } from "./features/course/course.module";
+import { RegistrationModule } from "./features/registration/registration.module";
+import { CourseListModule } from "./features/course-list/course-list.module";
+import { TokenInterceptor } from './auth/interceptors/token.interceptor';
+import { AuthorizedGuard } from './auth/guards/authorized.guard';
 
 @NgModule({
   declarations: [
@@ -15,14 +19,20 @@ import {RegistrationModule} from "./features/registration/registration.module";
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     CoursesModule,
     FontAwesomeModule,
     LoginModule,
     CourseModule,
-    RegistrationModule
+    RegistrationModule,
+    CourseListModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

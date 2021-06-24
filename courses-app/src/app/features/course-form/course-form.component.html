@@ -27,11 +27,12 @@
           <div class="form-field">
             <h3>Add authors</h3>
             <label>Author name</label>
-            <input class="input" formControlName="author" />
+            <input class="input" formControlName="author" #author/>
           </div>
           <app-button
             class="add-author-button"
             [text]="'Create author'"
+            (click)="addAuthorHandler(author.value)"
           ></app-button>
         </div>
         <div class="duration">

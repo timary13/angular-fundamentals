@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, NgModel} from "@angular/forms";
 import { IconName } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { titleCase } from "../helpers";
 
 @Component({
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   public visiblePasswordIcon: IconName = 'eye';
   public unvisiblePasswordIcon: IconName = 'eye-slash';
 
-  constructor() {
+  constructor(private authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -38,8 +39,11 @@ export class LoginComponent implements OnInit {
       `${controlName} is incorrect.`: `${controlName} is required.`);
   }
 
-  public submit(loginForm: NgForm) {
-
+  public onLoginClick(loginForm: NgForm) {
+    this.authService.login({
+      email: loginForm.value.login,
+      password: loginForm.value.password
+    });
   }
 
 }
