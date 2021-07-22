@@ -7,10 +7,12 @@
       <app-button
         class="card-buttons-show"
         [text]="'Show course'"
+        (click)="showCourse(course.id)"
       ></app-button>
       <div *ngIf="isEditable" class="card-buttons-action">
         <app-button
           [iconName]="editIcon"
+          (click)="editCourse(course.id)"
         ></app-button>
         <app-button
           [iconName]="trashIcon"

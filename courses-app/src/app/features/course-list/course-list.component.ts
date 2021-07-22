@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { IconName } from '@fortawesome/free-solid-svg-icons';
+import { NavigatorService } from 'src/app/services/navigator.service';
 import {ICourse} from "../../../dto";
 
 @Component({
@@ -14,9 +15,16 @@ export class CourseListComponent implements OnInit {
   public trashIcon: IconName = 'trash';
   public editIcon: IconName = 'pen';
 
-  constructor() { }
+  constructor(private navigatorService: NavigatorService) { }
 
   ngOnInit(): void {
   }
 
+  public showCourse(id: any) {
+    this.navigatorService.navigateToShowCourse(id);
+  }
+
+  public editCourse(id: any) {
+    this.navigatorService.navigateToEditCourse(id);
+  }
 }

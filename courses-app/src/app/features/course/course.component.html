@@ -1,8 +1,16 @@
 <div class="container">
   <app-header></app-header>
 
-  <div class="form-container">
-    <app-course-form></app-course-form>
+  <div *ngIf="viewMode === ViewMode.EDIT && course" class="form-container">
+    <app-course-form
+      [course]="course"
+    ></app-course-form>
+  </div>
+
+  <div *ngIf="viewMode === ViewMode.ADD" class="form-container">
+    <app-course-form
+      (addAuthor)="addAuthor($event)"
+    ></app-course-form>
   </div>
 
 </div>
