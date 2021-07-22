@@ -12,6 +12,7 @@ import { RegistrationModule } from "./features/registration/registration.module"
 import { CourseListModule } from "./features/course-list/course-list.module";
 import { TokenInterceptor } from './auth/interceptors/token.interceptor';
 import { AuthorizedGuard } from './auth/guards/authorized.guard';
+import { WINDOW_PROVIDERS } from './services/window.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { AuthorizedGuard } from './auth/guards/authorized.guard';
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi: true
-  }],
+  }, WINDOW_PROVIDERS],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

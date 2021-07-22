@@ -1,4 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { combineLatest, Subscription } from 'rxjs';
 import { AuthorsStoreService } from 'src/app/services/authors-store.service';
 import { CoursesStoreService } from 'src/app/services/courses-store.service';
@@ -24,13 +25,10 @@ export class CoursesComponent implements OnDestroy {
   constructor(
     private courseStore: CoursesStoreService,
     private authorsStore: AuthorsStoreService,
+    private router: Router
   ) {
     const courseStoreSubscribe = this.courseStore.courses$
       .subscribe((data) => {
-        /*this.courses = courses.map(course => {
-          const authorIds = course.authors.map(author => author.id);
-
-        });*/
         this.courses = data;
       });
     this.subscriptions.add(courseStoreSubscribe);
@@ -53,5 +51,9 @@ export class CoursesComponent implements OnDestroy {
   }
 
   public onSearch(value: string) {
+  }
+
+  public onAddCourseClick() {
+    this.router.navigate(['/add']);
   }
 }

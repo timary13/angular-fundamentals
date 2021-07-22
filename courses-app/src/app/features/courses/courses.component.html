@@ -35,8 +35,9 @@
     [title]="emptyListInfoTitle"
     [text]="emptyListInfoText"
   >
-    <app-button
-      [text]="'Add new course'"
-    ></app-button>
   </app-info>
+  <app-button
+      [text]="'Add new course'"
+      (click)="onAddCourseClick()"
+  ></app-button>
 </div>

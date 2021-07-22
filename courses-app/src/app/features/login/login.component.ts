@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, NgModel} from "@angular/forms";
+import { Router } from '@angular/router';
 import { IconName } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { titleCase } from "../helpers";
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   public visiblePasswordIcon: IconName = 'eye';
   public unvisiblePasswordIcon: IconName = 'eye-slash';
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -43,7 +44,10 @@ export class LoginComponent implements OnInit {
     this.authService.login({
       email: loginForm.value.login,
       password: loginForm.value.password
-    });
+    })
+    .subscribe(
+      () => this.router.navigate(['/courses']),
+    );
   }
 
 }

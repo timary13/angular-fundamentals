@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 
 import { IAuthor } from 'src/dto';
+import { HOST } from 'src/env.config';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +13,11 @@ export class AuthorsService {
   constructor(private http: HttpClient) { }
 
   public getAll() {
-    return this.http.get<{result: IAuthor[]}>('http://localhost:3000/authors/all')
+    return this.http.get<{result: IAuthor[]}>(`${HOST}/authors/all`)
       .pipe(map(data => data.result));
   }
 
   public addAuthor(authorName: string) {
-    return this.http.post('http://localhost:3000/authors/add', authorName);
+    return this.http.post(`${HOST}/authors/add`, authorName);
   }
 }
